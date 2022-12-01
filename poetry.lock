@@ -261,7 +261,7 @@ python-versions = "*"
 
 [[package]]
 name = "dparse"
-version = "0.5.1"
+version = "0.6.2"
 description = "A parser for Python dependency files"
 category = "dev"
 optional = false
@@ -269,10 +269,10 @@ python-versions = ">=3.5"
 
 [package.dependencies]
 packaging = "*"
-pyyaml = "*"
 toml = "*"
 
 [package.extras]
+conda = ["pyyaml"]
 pipenv = ["pipenv"]
 
 [[package]]
@@ -612,7 +612,7 @@ she-logging = ">=1.0.0,<2.0.0"
 
 [[package]]
 name = "mako"
-version = "1.2.1"
+version = "1.2.4"
 description = "A super-fast templating language that borrows the best ideas from the existing templating languages."
 category = "main"
 optional = false
@@ -1416,8 +1416,8 @@ distlib = [
     {file = "distlib-0.3.4.zip", hash = "sha256:e4b58818180336dc9c529bfb9a0b58728ffc09ad92027a3f30b7cd91e3458579"},
 ]
 dparse = [
-    {file = "dparse-0.5.1-py3-none-any.whl", hash = "sha256:e953a25e44ebb60a5c6efc2add4420c177f1d8404509da88da9729202f306994"},
-    {file = "dparse-0.5.1.tar.gz", hash = "sha256:a1b5f169102e1c894f9a7d5ccf6f9402a836a5d24be80a986c7ce9eaed78f367"},
+    {file = "dparse-0.6.2-py3-none-any.whl", hash = "sha256:8097076f1dd26c377f30d4745e6ec18fef42f3bf493933b842ac5bafad8c345f"},
+    {file = "dparse-0.6.2.tar.gz", hash = "sha256:d45255bda21f998bc7ddf2afd5e62505ba6134756ba2d42a84c56b0826614dfe"},
 ]
 draymed = [
     {file = "draymed-2.1.9-py3-none-any.whl", hash = "sha256:6b1daf1ea618edce3f35ac372cd655c05671ef43426fdee70568d255f2b92b73"},
@@ -1571,8 +1571,8 @@ kombu-batteries-included = [
     {file = "kombu_batteries_included-1.1.4-py3-none-any.whl", hash = "sha256:d5226d74e124cd193484a39127d77ff620eb6b6a26726df4c558cc98487b5855"},
 ]
 mako = [
-    {file = "Mako-1.2.1-py3-none-any.whl", hash = "sha256:df3921c3081b013c8a2d5ff03c18375651684921ae83fd12e64800b7da923257"},
-    {file = "Mako-1.2.1.tar.gz", hash = "sha256:f054a5ff4743492f1aa9ecc47172cb33b42b9d993cffcc146c9de17e717b0307"},
+    {file = "Mako-1.2.4-py3-none-any.whl", hash = "sha256:c97c79c018b9165ac9922ae4f32da095ffd3c4e6872b45eded42926deea46818"},
+    {file = "Mako-1.2.4.tar.gz", hash = "sha256:d60a3903dc3bb01a18ad6a89cdbe2e4eadc69c0bc8ef1e3773ba53d44c3f7a34"},
 ]
 markupsafe = [
     {file = "MarkupSafe-2.1.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:86b1f75c4e7c2ac2ccdaec2b9022845dbb81880ca318bb7a0a01fbf7813e3812"},
