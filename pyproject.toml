@@ -6,10 +6,6 @@ authors = ["Rob Grant <rob.grant@sensynehealth.com>"]
 keywords = ["Swagger", "Activation", "Auth"]
 repository = "https://github.com/draysontechnologies/dhos-activation-auth-api"
 
-[[tool.poetry.source]]
-name = "sensynehealth"
-url = "https://pypi.fury.io/sensynehealth/"
-
 [tool.poetry.dependencies]
 python = "^3.9"
 auth0-api-client = "1.*"
