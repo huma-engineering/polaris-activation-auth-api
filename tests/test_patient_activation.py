@@ -209,3 +209,22 @@ class TestCreatePatientActivation:
         assert response.json is not None
         assert response.json.get("otp", None) == "1111"
         assert response.json.get("activation_code", None) == "1"
+
+    def test_get_patient_by_activation_code(self, client: FlaskClient) -> None:
+        patient_id = "1234"
+        code = self._create_and_return_activation(client, patient_id)["activation_code"]
+
+        response = client.get(
+            f"/dhos/v1/activation/{code}/patient",
+            headers={"Authorization": "Bearer TOKEN"},
+        )
+        assert response.status_code == 200
+        assert response.json is not None
+        assert response.json["patient_id"] == patient_id
+
+    def test_get_patient_by_activation_code_failure(self, client: FlaskClient) -> None:
+        response = client.get(
+            f"/dhos/v1/activation/not_existing/patient",
+            headers={"Authorization": "Bearer TOKEN"},
+        )
+        assert response.status_code == 404

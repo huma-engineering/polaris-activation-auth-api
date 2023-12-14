@@ -631,3 +631,17 @@ def get_device_jwt(device_id: str, authorisation_code: str) -> Dict:
         ),
     }
     return {"jwt": jose_jwt.encode(claims=jwt_payload, key=key, algorithm=alg)}
+
+
+def get_patient_by_activation_code(activation_code: str) -> Dict:
+    # Get activation if not used and previous attempts count <= 10
+    existing_activation: Optional[PatientActivation] = PatientActivation.query.filter(
+        PatientActivation.code == activation_code,
+        PatientActivation.used == False,
+        PatientActivation.attempts_count < app.config["MAX_ACTIVATION_ATTEMPTS"],
+    ).first()
+
+    if not existing_activation:
+        raise EntityNotFoundException("Could not find relevant activation")
+
+    return {"patient_id": existing_activation.patient_id}

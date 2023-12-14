@@ -107,6 +107,38 @@ paths:
       operationId: dhos_activation_auth_api.blueprint_api.get_patient_activations
       security:
       - bearerAuth: []
+  /dhos/v1/activation/{activation_code}/patient:
+    get:
+      summary: Get patient's UUID associated with an activation
+      description: Get patient's UUID associated with the activation code provided
+        in the request. If activation is used or max attempts exceeded - 404 error
+        is returned
+      tags:
+      - patient-auth
+      parameters:
+      - name: activation_code
+        in: path
+        required: true
+        description: the activation code associated with the patient
+        schema:
+          type: string
+          example: 45f234jfg634hjg6
+      responses:
+        '200':
+          description: patient's UUID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthPatientResponse'
+        default:
+          description: Error, e.g. 400 Bad Request, 404 Not Found, 503 Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      operationId: dhos_activation_auth_api.blueprint_api.get_patient_by_activation_code
+      security:
+      - bearerAuth: []
   /dhos/v1/patient/{patient_id}/jwt:
     get:
       summary: Get a JWT for a patient
@@ -897,6 +929,16 @@ components:
       - modified_by
       - uuid
       title: Device response
+    AuthPatientResponse:
+      type: object
+      properties:
+        patient_id:
+          type: string
+          description: UUID of patient
+          example: ab3d9aa3-d5aa-406a-87b2-cd67ad872724
+      required:
+      - patient_id
+      title: Patient response
   responses:
     BadRequest:
       description: Bad or malformed request was received

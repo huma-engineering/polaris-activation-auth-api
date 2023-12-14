@@ -85,6 +85,41 @@ def get_patient_activations(patient_id: str) -> Response:
     return jsonify(controller.get_patient_activations(patient_id))
 
 
+@api_blueprint.route("/dhos/v1/activation/<activation_code>/patient", methods=["GET"])
+@protected_route(scopes_present(required_scopes="read:gdm_activation"))
+def get_patient_by_activation_code(activation_code: str) -> Response:
+    """---
+    get:
+      summary: Get patient's UUID associated with an activation
+      description: >-
+        Get patient's UUID associated with the activation code provided
+        in the request. If activation is used or max attempts exceeded - 404 error
+        is returned
+      tags: [patient-auth]
+      parameters:
+        - name: activation_code
+          in: path
+          required: true
+          description: the activation code associated with the patient
+          schema:
+            type: string
+            example: 45f234jfg634hjg6
+      responses:
+        '200':
+          description: patient's UUID
+          content:
+            application/json:
+              schema: AuthPatientResponse
+        default:
+          description: >-
+              Error, e.g. 400 Bad Request, 404 Not Found, 503 Service Unavailable
+          content:
+            application/json:
+              schema: Error
+    """
+    return jsonify(controller.get_patient_by_activation_code(activation_code))
+
+
 # This endpoint is protected by an authorisation code, not a JWT
 @api_blueprint.route("/dhos/v1/patient/<patient_id>/jwt", methods=["GET"])
 def get_patient_jwt(patient_id: str) -> Response:
