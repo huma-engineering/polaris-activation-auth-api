@@ -1,21 +1,24 @@
 [tool.poetry]
 name = "dhos-activation-auth-api"
 version = "0.0.1"
-description = "The Activation, Authentication and Authorisation API for Sensyne Health"
-authors = ["Rob Grant <rob.grant@sensynehealth.com>"]
+description = "The Activation, Authentication and Authorisation API for GDm"
+authors = ["Vladyslav Storozhenko <vladyslav.storozhenko@huma.com>"]
 keywords = ["Swagger", "Activation", "Auth"]
 repository = "https://github.com/draysontechnologies/dhos-activation-auth-api"
 
 [tool.poetry.dependencies]
 python = "^3.9"
 auth0-api-client = "1.*"
+connexion = "2.13.*"
 dhos-redis = "1.*"
 draymed = "2.*"
+flask = "2.2.*"
 flask-batteries-included = {version="3.*", extras = ["pgsql", "apispec"]}
 kombu-batteries-included = "1.*"
 pycryptodomex = "3.*"
 python-jose = "3.*"
 she-logging = "1.*"
+urllib3 = "1.*"
 
 [tool.poetry.dev-dependencies]
 bandit = "*"
