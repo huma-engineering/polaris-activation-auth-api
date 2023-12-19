@@ -27,6 +27,14 @@ def validate_patient_activation(activation_code: str, otp: str) -> Response:
     )
 
 
+def get_patient_by_activation_code(activation_code: str, jwt: str) -> Response:
+    return requests.get(
+        f"{_get_base_url()}/dhos/v1/activation/{activation_code}/patient",
+        headers={"Authorization": f"Bearer {jwt}"},
+        timeout=15,
+    )
+
+
 def get_patient_jwt(patient_uuid: str, authorisation_code: str) -> Response:
     return requests.get(
         f"{_get_base_url()}/dhos/v1/patient/{patient_uuid}/jwt",

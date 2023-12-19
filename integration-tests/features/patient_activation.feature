@@ -18,3 +18,9 @@ Feature: Activate patients
         When I validate the patient activation using the code
         Then I receive a patient authorisation code
         And I can use the code to generate a valid patient JWT
+
+    Scenario: Receive patient uuid based on activation code
+        Given a patient record exists
+        When I request a patient activation code
+        When I request a patient uuid by activation code
+        Then I receive a patient uuid

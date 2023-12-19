@@ -40,7 +40,7 @@ services:
       REPORT_PORTAL_PROJECT: ${REPORT_PORTAL_PROJECT:-}
       ENVIRONMENT: ${ENVIRONMENT:-}
       RELEASE: ${RELEASE:-}
-      SYSTEM_JWT_SCOPE: write:gdm_activation write:send_device write:send_clinician read:send_device
+      SYSTEM_JWT_SCOPE: write:gdm_activation write:send_device write:send_clinician read:send_device read:gdm_activation
     command: >
       bash -c "behave --no-capture --no-logcapture ${BEHAVE_ARGS:-}"
     depends_on:

@@ -328,3 +328,17 @@ class Device(Identifier, DeviceRequest):
         title = "Device response"
         unknown = EXCLUDE
         ordered = True
+
+
+@openapi_schema(dhos_activation_auth_api_spec)
+class AuthPatientResponse(Schema):
+    class Meta:
+        title = "Patient response"
+        unknown = EXCLUDE
+        ordered = True
+
+    patient_id = fields.String(
+        required=True,
+        description="UUID of patient",
+        example="ab3d9aa3-d5aa-406a-87b2-cd67ad872724",
+    )

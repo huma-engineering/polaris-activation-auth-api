@@ -21,6 +21,17 @@ def validate_patient_activation(context: Context) -> None:
     context.validate_patient_activation_response = response
 
 
+@when("I request a patient uuid by activation code")
+def request_patient_activation(context: Context) -> None:
+    activation_code = context.post_patient_activation_response.json()["activation_code"]
+    response = client.get_patient_by_activation_code(
+        activation_code=activation_code,
+        jwt=context.system_jwt,
+    )
+    assert response.status_code == 200
+    context.get_patient_by_activation_code_response = response
+
+
 @then("I can use the code to generate a valid patient JWT")
 def generate_patient_jwt(context: Context) -> None:
     authorisation_code = context.validate_patient_activation_response.json()[
@@ -29,3 +40,9 @@ def generate_patient_jwt(context: Context) -> None:
     response = client.get_patient_jwt(context.patient_uuid, authorisation_code)
     assert response.status_code == 200
     assert response.json()["jwt"].startswith("ey")
+
+
+@then("I receive a patient uuid")
+def generate_patient_jwt(context: Context) -> None:
+    patient_id = context.get_patient_by_activation_code_response.json()["patient_id"]
+    assert patient_id == context.patient_uuid
